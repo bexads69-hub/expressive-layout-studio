@@ -321,12 +321,11 @@ function Sports() {
             </div>
           </article>
         ))}
-        <article className="surface-card p-5 grid place-items-center text-center bg-primary/10 border-primary/40">
-          <div>
-            <div className="text-display text-2xl text-primary">+ many</div>
-            <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">more sports inside</div>
-          </div>
-        </article>
+      </div>
+      <div className="mt-4 flex justify-center">
+        <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/40 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+          + many more sports inside
+        </span>
       </div>
     </section>
   );
