@@ -3,9 +3,7 @@ import { useState } from "react";
 import {
   Sparkles,
   Dice5,
-  Radio,
   Trophy,
-  Spade,
   ShieldCheck,
   Lock,
   Zap,
