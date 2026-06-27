@@ -363,11 +363,11 @@ function SignUp() {
               </div>
               <label className="mt-6 flex items-start gap-3 text-sm cursor-pointer">
                 <input type="checkbox" required className="mt-1 accent-[color:var(--color-primary)]" />
-                <span className="text-muted-foreground">I confirm I am 18 years of age or older and a UK resident.</span>
+                <span className="text-muted-foreground">I confirm I am of legal gambling age in my country of residence.</span>
               </label>
               <label className="mt-3 flex items-start gap-3 text-sm cursor-pointer">
                 <input type="checkbox" required className="mt-1 accent-[color:var(--color-primary)]" />
-                <span className="text-muted-foreground">I agree to the Terms &amp; Conditions and Privacy Policy.</span>
+                <span className="text-muted-foreground">I agree to the <Link to="/terms" className="text-primary underline">Terms &amp; Conditions</Link> and <Link to="/privacy" className="text-primary underline">Privacy Policy</Link>.</span>
               </label>
               <button type="submit" className="btn-primary w-full mt-7">
                 Submit registration request <ArrowRight className="h-4 w-4" />
