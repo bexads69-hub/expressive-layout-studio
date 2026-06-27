@@ -3,9 +3,7 @@ import { useState } from "react";
 import {
   Sparkles,
   Dice5,
-  Radio,
   Trophy,
-  Spade,
   ShieldCheck,
   Lock,
   Zap,
@@ -29,11 +27,25 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const games = [
-  { name: "Slots", desc: "Hundreds of titles, regularly refreshed.", icon: Dice5, tag: "300+ titles" },
-  { name: "Live Casino", desc: "Real dealers, real-time tables.", icon: Radio, tag: "24/7 tables" },
-  { name: "Sports", desc: "Markets across major UK and global fixtures.", icon: Trophy, tag: "10k+ markets" },
-  { name: "Poker", desc: "Cash tables and scheduled tournaments.", icon: Spade, tag: "Daily MTTs" },
+const casinoGames = [
+  { name: "Teenpatti 20-20", tag: "Card" },
+  { name: "Andar Bahar", tag: "Card" },
+  { name: "Dragon Tiger", tag: "Card" },
+  { name: "32 Cards", tag: "Card" },
+  { name: "Lucky 7", tag: "Dice" },
+  { name: "Baccarat", tag: "Table" },
+  { name: "Poker 6 Player", tag: "Poker" },
+  { name: "Sicbo", tag: "Dice" },
+  { name: "Casino War", tag: "Card" },
+  { name: "Worli Matka", tag: "Lottery" },
+  { name: "Bollywood Casino", tag: "Themed" },
+  { name: "5Five Cricket", tag: "Sport" },
+];
+
+const sportsList = [
+  "Cricket", "Football", "Tennis", "Basketball", "Kabaddi", "Boxing",
+  "Table Tennis", "Badminton", "Volleyball", "Snooker", "Ice Hockey",
+  "Golf", "Rugby League", "MMA", "MotoGP", "Chess", "Cycling", "Esoccer",
 ];
 
 const reasons = [
@@ -56,6 +68,7 @@ function Index() {
       <Hero />
       <TrustBar />
       <Games />
+      <WorldCup />
       <WhyUs />
       <Responsible />
       <SignUp />
@@ -207,32 +220,96 @@ function Games() {
     <section id="games" className="mx-auto max-w-7xl px-5 py-20 md:py-28">
       <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
         <div>
-          <span className="chip">On the table</span>
-          <h2 className="text-display mt-4 text-4xl md:text-6xl">What&rsquo;s on the table</h2>
-          <p className="text-muted-foreground mt-3 text-lg">A focused lineup, not an overwhelming one.</p>
+          <span className="chip"><Dice5 className="h-3.5 w-3.5" /> Live Casino</span>
+          <h2 className="text-display mt-4 text-4xl md:text-6xl">Casino floor <span className="text-primary">favourites</span></h2>
+          <p className="text-muted-foreground mt-3 text-lg">A handpicked slice of our table. Hundreds more live in-app.</p>
         </div>
-        <a href="#contact" className="btn-ghost">Browse all <ArrowRight className="h-4 w-4" /></a>
+        <a href="#contact" className="btn-ghost">See full lobby <ArrowRight className="h-4 w-4" /></a>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {games.map((g) => (
-          <article key={g.name} className="surface-card p-6 group relative overflow-hidden">
-            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-2xl opacity-0 group-hover:opacity-100 transition" />
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        {casinoGames.map((g) => (
+          <article key={g.name} className="surface-card p-4 md:p-5 group relative overflow-hidden">
+            <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/10 blur-2xl opacity-0 group-hover:opacity-100 transition" />
             <div className="relative">
-              <div className="h-12 w-12 grid place-items-center rounded-xl bg-primary text-primary-foreground">
-                <g.icon className="h-6 w-6" />
-              </div>
-              <h3 className="text-display mt-5 text-2xl">{g.name}</h3>
-              <p className="text-muted-foreground text-sm mt-2 leading-relaxed">{g.desc}</p>
-              <div className="mt-6 flex items-center justify-between pt-4 border-t border-border">
-                <span className="text-xs font-mono uppercase tracking-wider text-primary">{g.tag}</span>
-                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition" />
+              <div className="text-[10px] font-mono uppercase tracking-widest text-primary">{g.tag}</div>
+              <h3 className="text-display mt-2 text-base md:text-lg leading-tight">{g.name}</h3>
+              <div className="mt-3 flex items-center justify-between pt-3 border-t border-border">
+                <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Play live</span>
+                <ArrowRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition" />
               </div>
             </div>
           </article>
         ))}
+        <article className="surface-card p-5 grid place-items-center text-center bg-primary/10 border-primary/40">
+          <div>
+            <div className="text-display text-2xl text-primary">+200</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Many more inside</div>
+          </div>
+        </article>
+      </div>
+
+      {/* Sports */}
+      <div id="sports" className="mt-20">
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
+          <div>
+            <span className="chip"><Trophy className="h-3.5 w-3.5" /> Sportsbook</span>
+            <h2 className="text-display mt-4 text-3xl md:text-5xl">Bet across <span className="text-primary">30+ sports</span></h2>
+            <p className="text-muted-foreground mt-3">From cricket and football to kabaddi, chess and esports.</p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {sportsList.map((s) => (
+            <span key={s} className="chip">{s}</span>
+          ))}
+          <span className="chip bg-primary/15 border-primary/40 text-primary">+ many more</span>
+        </div>
       </div>
     </section>
+  );
+}
+
+function WorldCup() {
+  return (
+    <section className="mx-auto max-w-7xl px-5 pb-20 md:pb-28">
+      <div className="surface-card p-8 md:p-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent" />
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
+        <div className="relative grid md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 items-center">
+          <div>
+            <span className="chip"><Trophy className="h-3.5 w-3.5" /> Live Event</span>
+            <h2 className="text-display mt-5 text-3xl md:text-5xl leading-tight">
+              ICC Women&rsquo;s <span className="text-primary">T20 World Cup</span> 2026
+            </h2>
+            <p className="text-muted-foreground mt-5 leading-relaxed max-w-2xl">
+              The full tournament is live on Banana Exchange — every group stage match, every market. Match odds, top batter, top bowler, session and fancy markets, all updated ball-by-ball.
+            </p>
+            <div className="flex flex-wrap gap-3 mt-7">
+              <a href="#contact" className="btn-primary">Place your bet <ArrowRight className="h-4 w-4" /></a>
+              <a href="#sports" className="btn-ghost">View all fixtures</a>
+            </div>
+          </div>
+          <div className="grid gap-3">
+            <Fixture teams="Australia W v India W" date="28 Jun · 14:30" odds="1.85" />
+            <Fixture teams="England W v New Zealand W" date="29 Jun · 18:00" odds="2.10" />
+            <Fixture teams="South Africa W v Bangladesh W" date="30 Jun · 14:30" odds="1.55" />
+            <Fixture teams="West Indies W v Ireland W" date="01 Jul · 18:00" odds="1.72" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Fixture({ teams, date, odds }: { teams: string; date: string; odds: string }) {
+  return (
+    <div className="surface-card px-5 py-4 flex items-center justify-between gap-4">
+      <div className="min-w-0">
+        <div className="text-sm font-bold truncate">{teams}</div>
+        <div className="text-xs text-muted-foreground mt-0.5">{date}</div>
+      </div>
+      <div className="text-display text-xl text-primary shrink-0">{odds}</div>
+    </div>
   );
 }
 
