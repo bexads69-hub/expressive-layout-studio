@@ -34,10 +34,10 @@
   --color-surface-2: var(--surface-2);
   --color-success: var(--success);
 
-  --font-display: "Druk Wide", "Archivo Black", "Inter", sans-serif;
-  --font-heading: "Archivo Black", "Inter", sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", system-ui, sans-serif;
+  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
 
   --shadow-glow: 0 0 0 1px rgba(255, 230, 0, 0.4), 0 10px 40px -10px rgba(255, 230, 0, 0.35);
   --shadow-card: 0 8px 30px -12px rgba(0, 0, 0, 0.6);
