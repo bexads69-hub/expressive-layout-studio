@@ -23,6 +23,18 @@ jobs:
 
       - name: Build
         run: bun run build
+        env:
+          NITRO_PRESET: static
+
+      - name: Add .htaccess for SPA routing
+        run: |
+          cat > .output/public/.htaccess << 'EOF'
+          Options -MultiViews
+          RewriteEngine On
+          RewriteCond %{REQUEST_FILENAME} !-f
+          RewriteCond %{REQUEST_FILENAME} !-d
+          RewriteRule ^ /index.html [QSA,L]
+          EOF
 
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -31,6 +43,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          local-dir: ./dist/
+          local-dir: ./.output/public/
           server-dir: /public_html/
           dangerous-clean-slate: false
