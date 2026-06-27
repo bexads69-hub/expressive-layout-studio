@@ -9,17 +9,27 @@ import {
   Zap,
   BadgeCheck,
   ArrowRight,
+  ArrowLeft,
   Check,
   ExternalLink,
   Clock,
   Heart,
+  CircleDot,
+  Flame,
+  Target,
+  Swords,
+  Activity,
+  Bike,
+  Mountain,
+  Gamepad2,
 } from "lucide-react";
+import logo from "../assets/banana-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Banana Exchange — UK Licensed Online Gaming" },
-      { name: "description", content: "A sharper take on online gaming, built for the UK. Slots, live casino, sports and poker on one regulated platform." },
+      { name: "description", content: "A sharper take on online gaming, based in the UK. Slots, live casino, sports and poker on one regulated platform." },
       { property: "og:title", content: "Banana Exchange — UK Licensed Online Gaming" },
       { property: "og:description", content: "Slots, live casino, sports and poker on one fast, secure UK-licensed platform." },
     ],
@@ -27,25 +37,66 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const casinoGames = [
-  { name: "Teenpatti 20-20", tag: "Card" },
-  { name: "Andar Bahar", tag: "Card" },
-  { name: "Dragon Tiger", tag: "Card" },
-  { name: "32 Cards", tag: "Card" },
-  { name: "Lucky 7", tag: "Dice" },
-  { name: "Baccarat", tag: "Table" },
-  { name: "Poker 6 Player", tag: "Poker" },
-  { name: "Sicbo", tag: "Dice" },
-  { name: "Casino War", tag: "Card" },
-  { name: "Worli Matka", tag: "Lottery" },
-  { name: "Bollywood Casino", tag: "Themed" },
-  { name: "5Five Cricket", tag: "Sport" },
+const casinoFavourites = [
+  { name: "European Roulette", tag: "Table" },
+  { name: "Classic Blackjack", tag: "Card" },
+  { name: "Texas Hold'em", tag: "Poker" },
+  { name: "Punto Banco Baccarat", tag: "Table" },
+  { name: "Mega Fortune Slots", tag: "Slots" },
 ];
 
 const sportsList = [
-  "Cricket", "Football", "Tennis", "Basketball", "Kabaddi", "Boxing",
-  "Table Tennis", "Badminton", "Volleyball", "Snooker", "Ice Hockey",
-  "Golf", "Rugby League", "MMA", "MotoGP", "Chess", "Cycling", "Esoccer",
+  { name: "Football", icon: CircleDot },
+  { name: "Cricket", icon: Target },
+  { name: "Tennis", icon: Activity },
+  { name: "Rugby", icon: Trophy },
+  { name: "Boxing", icon: Swords },
+  { name: "Snooker", icon: CircleDot },
+  { name: "Golf", icon: Flame },
+  { name: "Darts", icon: Target },
+  { name: "Horse Racing", icon: Mountain },
+  { name: "F1", icon: Bike },
+  { name: "MMA", icon: Swords },
+  { name: "Esports", icon: Gamepad2 },
+];
+
+const worldCups = [
+  {
+    badge: "FIFA Men's",
+    title: "FIFA World Cup 2026",
+    sub: "USA · Canada · Mexico",
+    blurb: "The 23rd FIFA World Cup is live across Banana Exchange — every group stage, knockout and final. Match odds, top scorer, anytime scorer and live in-play markets updated every second.",
+    fixtures: [
+      { teams: "England v Brazil", date: "12 Jun · 20:00", odds: "2.45" },
+      { teams: "France v Argentina", date: "14 Jun · 19:00", odds: "2.10" },
+      { teams: "Germany v Spain", date: "15 Jun · 17:30", odds: "2.70" },
+      { teams: "Portugal v Netherlands", date: "16 Jun · 20:00", odds: "2.25" },
+    ],
+  },
+  {
+    badge: "FIFA Women's",
+    title: "FIFA Women's World Cup 2027",
+    sub: "Brazil",
+    blurb: "The first FIFA Women's World Cup held in South America. Full tournament coverage with every match priced for outright, group stage and top scorer markets.",
+    fixtures: [
+      { teams: "USA v Spain", date: "24 Jun · 21:00", odds: "1.95" },
+      { teams: "England v Germany", date: "25 Jun · 18:00", odds: "2.30" },
+      { teams: "Brazil v France", date: "26 Jun · 22:00", odds: "2.05" },
+      { teams: "Australia v Sweden", date: "27 Jun · 11:00", odds: "1.85" },
+    ],
+  },
+  {
+    badge: "FIFA Club",
+    title: "FIFA Club World Cup 2025",
+    sub: "United States",
+    blurb: "32 of the world's elite clubs across four weeks. From the group stage through to the final at MetLife Stadium — full ante-post and in-play markets.",
+    fixtures: [
+      { teams: "Real Madrid v Man City", date: "18 Jun · 21:00", odds: "2.40" },
+      { teams: "Bayern v Inter Milan", date: "19 Jun · 18:00", odds: "2.15" },
+      { teams: "PSG v Flamengo", date: "20 Jun · 20:00", odds: "1.75" },
+      { teams: "Chelsea v Boca Juniors", date: "21 Jun · 23:00", odds: "1.60" },
+    ],
+  },
 ];
 
 const reasons = [
@@ -67,6 +118,7 @@ function Index() {
       <Header />
       <Hero />
       <TrustBar />
+      <Sports />
       <Games />
       <WorldCup />
       <WhyUs />
@@ -82,21 +134,15 @@ function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 backdrop-blur-xl bg-background/70">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-        <a href="#top" className="flex items-center gap-2.5">
-          <div className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground font-black">
-            B
-          </div>
-          <div className="leading-none">
-            <div className="text-display text-base">Banana</div>
-            <div className="text-[10px] tracking-[0.25em] text-muted-foreground">EXCHANGE</div>
-          </div>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
+        <a href="#top" className="flex items-center">
+          <img src={logo.url} alt="Banana Exchange" className="h-9 md:h-10 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
-          <a href="#games" className="hover:text-primary transition">Games</a>
+          <a href="#sports" className="hover:text-primary transition">Sports</a>
+          <a href="#games" className="hover:text-primary transition">Casino</a>
           <a href="#about" className="hover:text-primary transition">About</a>
           <a href="#responsible" className="hover:text-primary transition">Responsible</a>
-          <a href="#contact" className="hover:text-primary transition">Contact</a>
         </nav>
         <div className="flex items-center gap-3">
           <span className="chip hidden sm:inline-flex">18+</span>
@@ -106,10 +152,10 @@ function Header() {
       </div>
       {open && (
         <div className="md:hidden border-t border-border bg-background px-5 py-4 flex flex-col gap-3 text-sm font-semibold uppercase">
-          <a href="#games" onClick={() => setOpen(false)}>Games</a>
+          <a href="#sports" onClick={() => setOpen(false)}>Sports</a>
+          <a href="#games" onClick={() => setOpen(false)}>Casino</a>
           <a href="#about" onClick={() => setOpen(false)}>About</a>
           <a href="#responsible" onClick={() => setOpen(false)}>Responsible</a>
-          <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
         </div>
       )}
     </header>
@@ -119,17 +165,24 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-5 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-12 items-center">
-        <div>
+      {/* Animated background orbs */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-32 -left-20 h-[420px] w-[420px] rounded-full bg-primary/25 blur-3xl animate-float" style={{ ['--r' as any]: '0deg' }} />
+        <div className="absolute top-40 -right-32 h-[520px] w-[520px] rounded-full bg-primary/15 blur-3xl animate-float" style={{ animationDelay: '-2s' }} />
+        <div className="absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-primary/10 blur-3xl animate-float" style={{ animationDelay: '-4s' }} />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-5 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-12 items-center">
+        <div className="animate-rise">
           <span className="chip"><Sparkles className="h-3.5 w-3.5" /> UK Licensed Online Gaming</span>
           <h1 className="text-display mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
-            A sharper take on online gaming, <span className="text-primary">built for the UK.</span>
+            A sharper take on online gaming, <span className="text-shimmer">based in the UK.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
             Banana Exchange brings together slots, live casino and sports markets on one fast, secure platform — backed by UK regulation and fair-play standards.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" className="btn-primary">
+            <a href="#contact" className="btn-primary animate-pulse-glow">
               Join Banana Exchange <ArrowRight className="h-4 w-4" />
             </a>
             <a href="#about" className="btn-ghost">How it works</a>
@@ -159,33 +212,35 @@ function Stat({ k, v }: { k: string; v: string }) {
 
 function HeroVisual() {
   return (
-    <div className="relative aspect-square w-full max-w-lg justify-self-center">
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 via-primary/5 to-transparent blur-2xl" />
+    <div className="relative aspect-square w-full max-w-lg justify-self-center animate-rise" style={{ animationDelay: '0.15s' }}>
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 via-primary/5 to-transparent blur-2xl animate-pulse-glow" />
       <div className="relative h-full w-full rounded-3xl surface-card p-6 overflow-hidden">
         <div className="absolute top-6 left-6 chip">LIVE</div>
         <div className="absolute top-6 right-6 text-xs font-mono text-muted-foreground">#BNX-2026</div>
 
-        {/* Bouncing tokens */}
         <div className="absolute inset-0 grid place-items-center">
-          <div className="relative h-56 w-56">
+          <div className="relative h-60 w-60">
             <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/60 animate-spin" style={{ animationDuration: "18s" }} />
-            <div className="absolute inset-6 rounded-full bg-primary text-primary-foreground grid place-items-center text-display text-7xl">B</div>
+            <div className="absolute inset-3 rounded-full border border-primary/30 animate-spin" style={{ animationDuration: "26s", animationDirection: 'reverse' }} />
+            <div className="absolute inset-8 rounded-full bg-primary text-primary-foreground grid place-items-center overflow-hidden animate-pulse-glow">
+              <img src={logo.url} alt="" className="h-20 w-auto opacity-95" />
+            </div>
           </div>
         </div>
 
-        <div className="absolute -left-2 top-1/3 surface-card px-4 py-3 rotate-[-6deg] shadow-card">
+        <div className="absolute -left-2 top-1/3 surface-card px-4 py-3 shadow-card animate-float" style={{ ['--r' as any]: '-6deg', transform: 'rotate(-6deg)' }}>
           <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Roulette</div>
           <div className="text-display text-xl text-primary">36 RED</div>
         </div>
-        <div className="absolute right-2 top-16 surface-card px-4 py-3 rotate-[5deg] shadow-card">
+        <div className="absolute right-2 top-16 surface-card px-4 py-3 shadow-card animate-float" style={{ ['--r' as any]: '5deg', transform: 'rotate(5deg)', animationDelay: '-1.5s' }}>
           <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Match odds</div>
           <div className="text-display text-xl">2.45</div>
         </div>
-        <div className="absolute right-4 bottom-6 surface-card px-4 py-3 rotate-[-3deg] shadow-card">
+        <div className="absolute right-4 bottom-6 surface-card px-4 py-3 shadow-card animate-float" style={{ ['--r' as any]: '-3deg', transform: 'rotate(-3deg)', animationDelay: '-3s' }}>
           <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Withdrawal</div>
           <div className="text-display text-xl text-[color:var(--success)]">£420.00</div>
         </div>
-        <div className="absolute left-4 bottom-8 surface-card px-4 py-3 rotate-[4deg] shadow-card">
+        <div className="absolute left-4 bottom-8 surface-card px-4 py-3 shadow-card animate-float" style={{ ['--r' as any]: '4deg', transform: 'rotate(4deg)', animationDelay: '-4.5s' }}>
           <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Slot win</div>
           <div className="text-display text-xl text-primary">x128</div>
         </div>
@@ -215,21 +270,59 @@ function TrustBar() {
   );
 }
 
+function Sports() {
+  return (
+    <section id="sports" className="mx-auto max-w-7xl px-5 py-20 md:py-28">
+      <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+        <div>
+          <span className="chip"><Trophy className="h-3.5 w-3.5" /> Sportsbook</span>
+          <h2 className="text-display mt-4 text-4xl md:text-6xl">Bet across <span className="text-primary">30+ sports</span></h2>
+          <p className="text-muted-foreground mt-3 text-lg">From the Premier League to the Ashes — every market, in-play and pre-match.</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+        {sportsList.map((s, i) => (
+          <article
+            key={s.name}
+            className="surface-card p-5 group flex flex-col items-start gap-4 animate-rise"
+            style={{ animationDelay: `${i * 0.04}s` }}
+          >
+            <div className="h-11 w-11 grid place-items-center rounded-xl bg-primary/10 border border-primary/30 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+              <s.icon className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
+            </div>
+            <div>
+              <div className="text-display text-lg leading-tight">{s.name}</div>
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">Live · Pre-match</div>
+            </div>
+          </article>
+        ))}
+        <article className="surface-card p-5 grid place-items-center text-center bg-primary/10 border-primary/40">
+          <div>
+            <div className="text-display text-2xl text-primary">+ many</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">more sports inside</div>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 function Games() {
   return (
-    <section id="games" className="mx-auto max-w-7xl px-5 py-20 md:py-28">
+    <section id="games" className="mx-auto max-w-7xl px-5 pb-20 md:pb-28">
       <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
         <div>
           <span className="chip"><Dice5 className="h-3.5 w-3.5" /> Live Casino</span>
           <h2 className="text-display mt-4 text-4xl md:text-6xl">Casino floor <span className="text-primary">favourites</span></h2>
-          <p className="text-muted-foreground mt-3 text-lg">A handpicked slice of our table. Hundreds more live in-app.</p>
+          <p className="text-muted-foreground mt-3 text-lg">A handpicked five from the lobby. Dozens more inside.</p>
         </div>
-        <a href="#contact" className="btn-ghost">See full lobby <ArrowRight className="h-4 w-4" /></a>
+        <Link to="/casino" className="btn-ghost">See full lobby <ArrowRight className="h-4 w-4" /></Link>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-        {casinoGames.map((g) => (
-          <article key={g.name} className="surface-card p-4 md:p-5 group relative overflow-hidden">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+        {casinoFavourites.map((g, i) => (
+          <article key={g.name} className="surface-card p-4 md:p-5 group relative overflow-hidden animate-rise" style={{ animationDelay: `${i * 0.05}s` }}>
             <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/10 blur-2xl opacity-0 group-hover:opacity-100 transition" />
             <div className="relative">
               <div className="text-[10px] font-mono uppercase tracking-widest text-primary">{g.tag}</div>
@@ -241,59 +334,69 @@ function Games() {
             </div>
           </article>
         ))}
-        <article className="surface-card p-5 grid place-items-center text-center bg-primary/10 border-primary/40">
+        <Link to="/casino" className="surface-card p-5 grid place-items-center text-center bg-primary/10 border-primary/40 group">
           <div>
-            <div className="text-display text-2xl text-primary">+200</div>
-            <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Many more inside</div>
+            <div className="text-display text-2xl text-primary">View all</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1 inline-flex items-center gap-1">
+              Full lobby <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition" />
+            </div>
           </div>
-        </article>
-      </div>
-
-      {/* Sports */}
-      <div id="sports" className="mt-20">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
-          <div>
-            <span className="chip"><Trophy className="h-3.5 w-3.5" /> Sportsbook</span>
-            <h2 className="text-display mt-4 text-3xl md:text-5xl">Bet across <span className="text-primary">30+ sports</span></h2>
-            <p className="text-muted-foreground mt-3">From cricket and football to kabaddi, chess and esports.</p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {sportsList.map((s) => (
-            <span key={s} className="chip">{s}</span>
-          ))}
-          <span className="chip bg-primary/15 border-primary/40 text-primary">+ many more</span>
-        </div>
+        </Link>
       </div>
     </section>
   );
 }
 
 function WorldCup() {
+  const [index, setIndex] = useState(0);
+  const cup = worldCups[index];
+  const prev = () => setIndex((i) => (i - 1 + worldCups.length) % worldCups.length);
+  const next = () => setIndex((i) => (i + 1) % worldCups.length);
+
   return (
     <section className="mx-auto max-w-7xl px-5 pb-20 md:pb-28">
-      <div className="surface-card p-8 md:p-14 relative overflow-hidden">
+      <div className="surface-card p-6 md:p-14 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent" />
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
-        <div className="relative grid md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 items-center">
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/20 blur-3xl animate-float" />
+
+        <div className="relative flex items-center justify-between mb-6">
+          <span className="chip"><Trophy className="h-3.5 w-3.5" /> {cup.badge}</span>
+          <div className="flex items-center gap-2">
+            <button onClick={prev} aria-label="Previous world cup" className="h-9 w-9 rounded-full border border-border grid place-items-center hover:border-primary hover:text-primary transition">
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <div className="flex gap-1.5">
+              {worldCups.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${i === index ? 'w-6 bg-primary' : 'w-1.5 bg-border'}`}
+                />
+              ))}
+            </div>
+            <button onClick={next} aria-label="Next world cup" className="h-9 w-9 rounded-full border border-border grid place-items-center hover:border-primary hover:text-primary transition">
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+
+        <div key={index} className="relative grid md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 items-center animate-rise">
           <div>
-            <span className="chip"><Trophy className="h-3.5 w-3.5" /> Live Event</span>
-            <h2 className="text-display mt-5 text-3xl md:text-5xl leading-tight">
-              ICC Women&rsquo;s <span className="text-primary">T20 World Cup</span> 2026
+            <h2 className="text-display text-3xl md:text-5xl leading-tight">
+              <span className="text-primary">{cup.title.split(' ').slice(0, -1).join(' ')}</span> {cup.title.split(' ').slice(-1)}
             </h2>
-            <p className="text-muted-foreground mt-5 leading-relaxed max-w-2xl">
-              The full tournament is live on Banana Exchange — every group stage match, every market. Match odds, top batter, top bowler, session and fancy markets, all updated ball-by-ball.
-            </p>
+            <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground mt-3">{cup.sub}</div>
+            <p className="text-muted-foreground mt-5 leading-relaxed max-w-2xl">{cup.blurb}</p>
             <div className="flex flex-wrap gap-3 mt-7">
               <a href="#contact" className="btn-primary">Place your bet <ArrowRight className="h-4 w-4" /></a>
               <a href="#sports" className="btn-ghost">View all fixtures</a>
             </div>
           </div>
           <div className="grid gap-3">
-            <Fixture teams="Australia W v India W" date="28 Jun · 14:30" odds="1.85" />
-            <Fixture teams="England W v New Zealand W" date="29 Jun · 18:00" odds="2.10" />
-            <Fixture teams="South Africa W v Bangladesh W" date="30 Jun · 14:30" odds="1.55" />
-            <Fixture teams="West Indies W v Ireland W" date="01 Jul · 18:00" odds="1.72" />
+            {cup.fixtures.map((f) => (
+              <Fixture key={f.teams} teams={f.teams} date={f.date} odds={f.odds} />
+            ))}
           </div>
         </div>
       </div>
@@ -355,7 +458,7 @@ function Responsible() {
               Gambling should stay entertainment, <span className="text-primary">not a problem.</span>
             </h2>
             <p className="text-muted-foreground mt-5 leading-relaxed max-w-2xl">
-              You must be 18 or over to register. Set deposit and time limits in your account, and take a break with self-exclusion tools whenever you need to. If gambling is no longer fun, please reach out to one of the organisations below — they&rsquo;re independent, confidential, and free.
+              You must be of legal gambling age in your country to register. Set deposit and time limits in your account, and take a break with self-exclusion tools whenever you need to. If gambling is no longer fun, please reach out to one of the organisations below — they&rsquo;re independent, confidential, and free.
             </p>
             <div className="flex flex-wrap gap-3 mt-7">
               {orgs.map((o) => (
@@ -404,7 +507,7 @@ function SignUp() {
           </p>
           <div className="mt-8 grid gap-4">
             <InfoBlock title="Support" body="Live chat available daily, 9am – 11pm UK time." icon={Clock} />
-            <InfoBlock title="Registered for" body="UK residents, 18+ only. ID verification required at sign-up per UK Gambling Commission requirements." icon={ShieldCheck} />
+            <InfoBlock title="Registered for" body="Players worldwide who are of legal gambling age in their country of residence. ID verification required at sign-up." icon={ShieldCheck} />
           </div>
         </div>
 
@@ -519,12 +622,9 @@ function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto max-w-7xl px-5 py-12 grid md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)] gap-10">
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground font-black">B</div>
-            <div className="text-display text-base">Banana Exchange</div>
-          </div>
+          <img src={logo.url} alt="Banana Exchange" className="h-9 w-auto" />
           <p className="text-sm text-muted-foreground mt-4 max-w-md">
-            UK Gambling Commission licensed operator. 18+ only. Please play responsibly. Gambling can be addictive.
+            UK Gambling Commission licensed operator, based in the UK. 18+ only. Please play responsibly. Gambling can be addictive.
           </p>
           <div className="flex gap-2 mt-5">
             <span className="chip">18+</span>
@@ -535,7 +635,8 @@ function Footer() {
         <div>
           <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">Explore</div>
           <ul className="space-y-2.5 text-sm">
-            <li><a href="#games" className="hover:text-primary">Games</a></li>
+            <li><a href="#sports" className="hover:text-primary">Sports</a></li>
+            <li><Link to="/casino" className="hover:text-primary">Casino lobby</Link></li>
             <li><a href="#about" className="hover:text-primary">Why us</a></li>
             <li><a href="#responsible" className="hover:text-primary">Responsible play</a></li>
             <li><a href="#contact" className="hover:text-primary">Sign up</a></li>
@@ -557,7 +658,7 @@ function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-5 py-6 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} Banana Exchange. All rights reserved.</span>
-          <span>Licence number [INSERT LICENCE NUMBER] · UK only</span>
+          <span>Licence number [INSERT LICENCE NUMBER] · Based in the UK</span>
         </div>
       </div>
     </footer>
