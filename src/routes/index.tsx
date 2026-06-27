@@ -70,6 +70,7 @@ function Index() {
       <Hero />
       <TrustBar />
       <Games />
+      <WorldCup />
       <WhyUs />
       <Responsible />
       <SignUp />
