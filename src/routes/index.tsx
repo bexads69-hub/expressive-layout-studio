@@ -411,57 +411,31 @@ function InfoBlock({ title, body, icon: Icon }: { title: string; body: string; i
   );
 }
 
-function Legal() {
+function LegalLinks() {
+  const docs = [
+    { title: "Terms & Conditions", desc: "Eligibility, licensing, account rules and governing law.", to: "/terms" as const },
+    { title: "Privacy Policy", desc: "What we collect, why, how we share it, and your rights.", to: "/privacy" as const },
+  ];
   return (
     <section id="legal" className="bg-surface/40 border-y border-border">
-      <div className="mx-auto max-w-7xl px-5 py-20 grid md:grid-cols-2 gap-10">
-        <LegalDoc
-          title="Terms & Conditions"
-          updated="June 2026"
-          sections={[
-            ["1. Eligibility", "You must be at least 18 years old and a resident of the United Kingdom to register or play on Banana Exchange. We carry out age and identity verification checks in line with UK Gambling Commission requirements, and may suspend accounts pending verification."],
-            ["2. Licensing", "Banana Exchange operates under a licence issued by the UK Gambling Commission, licence number [INSERT LICENCE NUMBER]. You can verify this on the public register at gamblingcommission.gov.uk."],
-            ["3. Account responsibility", "You are responsible for keeping your login details secure. One account per person. We reserve the right to close or suspend accounts suspected of fraud, multiple-accounting, or breach of these terms."],
-            ["4. Deposits & withdrawals", "Deposit and withdrawal limits, processing times, and verification requirements are detailed in your account dashboard and may vary by payment method."],
-            ["5. Responsible gambling", "Deposit limits, time-outs, and self-exclusion tools are available in your account at any time. We may apply additional limits where we have concerns about a customer's gambling behaviour."],
-            ["6. Changes to these terms", "We may update these terms from time to time; continued use of the platform after changes constitutes acceptance."],
-            ["7. Governing law", "These terms are governed by the laws of England and Wales."],
-          ]}
-        />
-        <LegalDoc
-          title="Privacy Policy"
-          updated="June 2026"
-          sections={[
-            ["1. What we collect", "Name, date of birth, contact details, and identity verification documents submitted during sign-up, plus account and transaction activity once you're playing."],
-            ["2. Why we collect it", "To verify your age and identity, as required by law. To process deposits, withdrawals, and account activity. To detect fraud and meet anti-money-laundering obligations. To apply responsible gambling checks and limits."],
-            ["3. Sharing", "We share data with identity verification providers, payment processors, and regulators where legally required. We do not sell personal data to third parties."],
-            ["4. Retention", "We retain account and transaction records for the period required under UK gambling and financial regulations."],
-            ["5. Your rights", "You can request a copy of the data we hold about you, or ask us to correct or delete it where we are not legally required to retain it, by contacting support."],
-          ]}
-        />
+      <div className="mx-auto max-w-7xl px-5 py-20 grid md:grid-cols-2 gap-6">
+        {docs.map((d) => (
+          <Link key={d.to} to={d.to} className="surface-card p-7 md:p-8 group block">
+            <div className="flex items-baseline justify-between flex-wrap gap-2">
+              <h3 className="text-display text-2xl">{d.title}</h3>
+              <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Updated June 2026</span>
+            </div>
+            <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{d.desc}</p>
+            <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:translate-x-1 transition">
+              Read full document <ArrowRight className="h-4 w-4" />
+            </span>
+          </Link>
+        ))}
       </div>
     </section>
   );
 }
 
-function LegalDoc({ title, updated, sections }: { title: string; updated: string; sections: [string, string][] }) {
-  return (
-    <article className="surface-card p-7 md:p-8">
-      <div className="flex items-baseline justify-between flex-wrap gap-2">
-        <h3 className="text-display text-2xl">{title}</h3>
-        <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Updated {updated}</span>
-      </div>
-      <div className="mt-6 space-y-5">
-        {sections.map(([h, b]) => (
-          <div key={h}>
-            <h4 className="text-sm font-bold uppercase tracking-wider text-primary">{h}</h4>
-            <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">{b}</p>
-          </div>
-        ))}
-      </div>
-    </article>
-  );
-}
 
 function Footer() {
   return (
