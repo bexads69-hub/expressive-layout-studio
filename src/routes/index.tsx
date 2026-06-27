@@ -59,7 +59,7 @@ function Index() {
       <WhyUs />
       <Responsible />
       <SignUp />
-      <Legal />
+      <LegalLinks />
       <Footer />
     </div>
   );
