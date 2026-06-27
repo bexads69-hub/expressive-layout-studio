@@ -29,11 +29,25 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const games = [
-  { name: "Slots", desc: "Hundreds of titles, regularly refreshed.", icon: Dice5, tag: "300+ titles" },
-  { name: "Live Casino", desc: "Real dealers, real-time tables.", icon: Radio, tag: "24/7 tables" },
-  { name: "Sports", desc: "Markets across major UK and global fixtures.", icon: Trophy, tag: "10k+ markets" },
-  { name: "Poker", desc: "Cash tables and scheduled tournaments.", icon: Spade, tag: "Daily MTTs" },
+const casinoGames = [
+  { name: "Teenpatti 20-20", tag: "Card" },
+  { name: "Andar Bahar", tag: "Card" },
+  { name: "Dragon Tiger", tag: "Card" },
+  { name: "32 Cards", tag: "Card" },
+  { name: "Lucky 7", tag: "Dice" },
+  { name: "Baccarat", tag: "Table" },
+  { name: "Poker 6 Player", tag: "Poker" },
+  { name: "Sicbo", tag: "Dice" },
+  { name: "Casino War", tag: "Card" },
+  { name: "Worli Matka", tag: "Lottery" },
+  { name: "Bollywood Casino", tag: "Themed" },
+  { name: "5Five Cricket", tag: "Sport" },
+];
+
+const sportsList = [
+  "Cricket", "Football", "Tennis", "Basketball", "Kabaddi", "Boxing",
+  "Table Tennis", "Badminton", "Volleyball", "Snooker", "Ice Hockey",
+  "Golf", "Rugby League", "MMA", "MotoGP", "Chess", "Cycling", "Esoccer",
 ];
 
 const reasons = [
