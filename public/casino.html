@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Casino Lobby — Banana Exchange</title>
+<meta name="description" content="Browse the full Banana Exchange casino lobby — Blackjack, Roulette, Slots, Baccarat, Texas Hold'em and dozens more live tables.">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="/home.html"><img class="logo" src="/__l5e/assets-v1/1ddbfe40-39ee-46a1-b5d6-137684eccc14/banana-logo.png" alt="Banana Exchange"></a>
+    <a href="/home.html" class="btn btn-ghost btn-sm">← Back home</a>
+  </div>
+</header>
+
+<section class="section">
+  <span class="chip">🎲 Full Lobby</span>
+  <h1 style="font-family:var(--font-display);font-weight:900;text-transform:uppercase;font-size:clamp(2.25rem,5vw,3.75rem);margin-top:1.25rem;line-height:1">The complete <span class="text-primary">casino floor</span></h1>
+  <p style="color:var(--muted);margin-top:1rem;max-width:36rem;font-size:1.05rem;line-height:1.6">Every live table, slot and card game available on Banana Exchange — updated weekly with new providers.</p>
+
+  <div class="games-grid lobby" style="margin-top:3rem">
+    <!-- generated -->
+  </div>
+
+  <div style="margin-top:3rem;text-align:center">
+    <a href="/home.html" class="btn btn-primary">← Back to home</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-bottom"><div>
+    <span>© <span data-year></span> Banana Exchange. All rights reserved.</span>
+    <span>Based in the UK · 18+</span>
+  </div></div>
+</footer>
+
+<script>
+const games=[
+ ["European Roulette","Table"],["Classic Blackjack","Card"],["Texas Hold'em","Poker"],["Three Card Brag","Card"],
+ ["Punto Banco Baccarat","Table"],["Mega Fortune Slots","Slots"],["Starburst","Slots"],["Gonzo's Quest","Slots"],
+ ["Lightning Roulette","Table"],["Speed Baccarat","Table"],["Caribbean Stud Poker","Poker"],["Pai Gow Poker","Poker"],
+ ["Sic Bo","Dice"],["Craps","Dice"],["American Roulette","Table"],["Casino Hold'em","Poker"],
+ ["Book of Dead","Slots"],["Rainbow Riches","Slots"],["Mega Moolah","Slots"],["Dream Catcher","Wheel"],
+ ["Monopoly Live","Themed"],["Crazy Time","Themed"],["Deal or No Deal","Themed"],["Bonanza Megaways","Slots"]
+];
+document.querySelector('.games-grid').innerHTML=games.map(([n,t],i)=>
+  `<article class="card game rise" style="animation-delay:${(i*0.03).toFixed(2)}s"><div class="tag">${t}</div><h3>${n}</h3><div class="game-foot"><span>Play live</span><span>→</span></div></article>`
+).join('');
+</script>
+<script src="/site.js" defer></script>
+</body>
+</html>
